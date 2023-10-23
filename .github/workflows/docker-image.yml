@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     - name: Checkout code
-    - with:
+      uses: actions/checkout@v3
+      with:
         fetch-depth: 0
 
     - name: Docker Login
-    - env:
+      env:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       run: |
