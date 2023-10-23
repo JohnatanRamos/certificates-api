@@ -24,5 +24,16 @@ jobs:
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_TOKEN
+    
+    - name: Docker Build
+      run: docker build -t ${DOCKER_USER}/certificates-api:1.0.0 .
+
+    - name: Create Latest Image
+      run: docker tag ${DOCKER_USER}/certificates-api:1.0.0 ${DOCKER_USER}/certificates-api
+      
+    - name: Docker Push
+      run: |
+        docker push ${DOCKER_USER}/certificates-api:1.0.0
+        docker push ${DOCKER_USER}/certificates-api
 
       
